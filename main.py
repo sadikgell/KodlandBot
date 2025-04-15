@@ -1,7 +1,7 @@
 import sqlite3
 import discord
 
-TOKEN = "Your Token"
+TOKEN = "YOUR TOKEN HERE"
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -48,27 +48,6 @@ def complete_task(task_id: int):
     except Exception as error:
         print("Error while completing task:", error)
 
-def test_system():
-    try:
-        with sqlite3.connect('Database.db') as conn:
-            cursor = conn.cursor()
-            cursor.execute("SELECT * FROM tasks")
-            records = cursor.fetchall()
-            if not records:
-                add_task("test task")
-                print("Test task added.")
-                cursor.execute("SELECT * FROM tasks")
-                records = cursor.fetchall()
-
-
-            if records:
-                complete_task(1)
-                print("Marked task 1 as completed.")
-                print("Current tasks:\n", show_tasks())
-                delete_task(1)
-                print("Deleted task 1.")
-    except Exception as error:
-        print("Error during testing:", error)
 
 @client.event
 async def on_ready():
@@ -115,8 +94,5 @@ async def on_message(message):
         except ValueError:
             await message.channel.send("Please enter a valid task ID.")
 
-    elif content.startswith('$test'):
-        test_system()
-        await message.channel.send("Test completed. Check the console for results.")
 
 client.run(TOKEN)
