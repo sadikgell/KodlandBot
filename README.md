@@ -3,7 +3,9 @@ Kodland Discord Botu
 
 ### KURULUM
 
-```pip install -r requirements.txt```
+```
+pip install -r requirements.txt
+```
 
 Tokeninizi token değişkenine koyunuz.
 
